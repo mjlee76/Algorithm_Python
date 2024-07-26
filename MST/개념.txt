@@ -1,0 +1,65 @@
+- MST : Minimum Spanning Tree
+- Spanning Tree : 모든 노드가 연결된 트리
+- MST : 최소의 비용으로 모든 노드가 연결된 트리
+   -> 모든 노드를 잇는데 최소비용
+
+- MST 푸는 방법 : Kruskal or Prim
+- Kruskal : 전체 간선 중 작은것부터 연결
+  --> Union-Find 알고리즘사용(어려움)
+- Prim : 현재 연결된 트리에 이어진 간선중 가장 작은것을 추가
+  --> Heap자료구조 사용
+
+- Heap
+    - 최대값, 최소값을 빠르게 계산하기 위한 자료구조
+    - 이진 트리 구조
+    - 처음에 저장할때부터 최대값 or 최소값 결정하도록
+    - 자식노드에 값이 들어가 부모노드와 비교후 올라감
+    - lgE의 시간복잡도
+
+<핵심 코드>
+heap = [0,1]  # heap[비용, 노드번호]
+
+# heap이 빌때까지 반복
+while heap:
+
+# heap에 들어있던 (0,1)삭제
+w, next_node = heapq.heappop(heap)
+
+# next_node(1번노드) 방문 체크
+if chk[next_node] == False:
+    chk[next_node] = True
+
+    # 결과에 엣지값(비용) 더해주기
+    rs += w
+
+    # heap에 next_node(1번노드)와
+    for next_edge in edge[next_node]:
+
+        # 연결된 노드중 방문하지 않은것을
+        if chk[next_edge[1]] == False:
+
+        # heap에 추가
+        heapq.heappush(heap, next_edge)
+
+
+<아이디어>
+- 최소스패닝 트리 기본문제(외우기)
+- 간선을 인접 리스트 형태로 저장
+    ex. 1[(w, v), (~, ~), (~, ~), ~ ] #(w, v): w비용
+        2[(w, v), (~, ~), (~, ~), ~ ]   v 1번노드와 
+        ...                              연결된 다음노드
+- 시작점부터 힙에 넣기
+- 힙이 빌때까지,
+    - 해당 노드 방문 안한곳일경우
+    - 방문 체크, 비용 추가, 연결된 간선 새롭게 추가
+
+<시간복잡도>
+- MST : O(ElgE)
+
+
+@@@ TIP @@@
+- 최소 스패닝 트리 코드는 그냥 외우기!
+- 중요한건, 해당 문제가 MST문제인지 알아내는 능력
+    - 모든 노드가 연결되도록 한다거나
+    - 이미 연결된 노드를 최소의 비용으로 줄이기일때
+    
