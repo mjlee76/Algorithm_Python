@@ -12,7 +12,7 @@ input = sys.stdin.readline
 
 # N:가로 M:세로
 N, M = map(int, input().split())
-# 지도
+# 지도 <입력값이 문자열이므로 map사용x, split()대신 strip()사용>
 graph = [list(input().strip())for _ in range(M)]
 # 방문 확인 지도
 chk = [[False] * N for _ in range(M)]
