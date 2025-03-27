@@ -1,3 +1,4 @@
+from itertools import permutations
 def solution(numbers):
     answer = ''
     p = []
@@ -36,7 +37,7 @@ def solution(numbers):
 # 이러혐 221 보다 222가 사전적 순서로 큼 -> numbers가 0~1000까지 이므로 세번은 합쳐줘야 원하는 정렬 가능
 # 예를 들어 numbers의 원소가 0~100이면 두번만 합쳐주면 가능
 
-# key = lambda x:x*3 으로 세번 합쳐준 뒤 정렬(내림차순으로)
+# lambda x:x*3 으로 세번 합쳐준 뒤 정렬(내림차순으로)
 
 # 모든 원소를 앞에서부터 차례로 합치면 가장 큰 수 완성
 
